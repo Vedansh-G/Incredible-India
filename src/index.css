@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-50: #eef8f6;
+  --color-brand-100: #d5efe9;
+  --color-brand-200: #aadfd3;
+  --color-brand-300: #74c7b6;
+  --color-brand-400: #3fa896;
+  --color-brand-500: #1f8a78;
+  --color-brand-600: #166f61;
+  --color-brand-700: #14594f;
+  --color-brand-800: #144841;
+  --color-brand-900: #133c37;
+
+  --color-ink-50: #f4f6f8;
+  --color-ink-100: #e4e9ee;
+  --color-ink-200: #ccd5de;
+  --color-ink-300: #a7b6c6;
+  --color-ink-400: #7b90a6;
+  --color-ink-500: #5f748c;
+  --color-ink-600: #4c5d72;
+  --color-ink-700: #3e4c5d;
+  --color-ink-800: #36414f;
+  --color-ink-900: #1a2330;
+  --color-ink-950: #0c1219;
+
+  --color-sand-50: #fbf7f1;
+  --color-sand-100: #f3ebe0;
+  --color-sand-200: #e6d5bd;
+  --color-accent: #e85d4c;
+  --color-accent-soft: #ff8a76;
+
+  --shadow-soft: 0 10px 40px -12px rgb(26 35 48 / 0.18);
+  --shadow-lift: 0 20px 50px -18px rgb(26 35 48 / 0.28);
+  --shadow-glow: 0 0 0 1px rgb(31 138 120 / 0.12), 0 12px 40px -10px rgb(31 138 120 / 0.35);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-sand-50 text-ink-900 font-sans antialiased dark:bg-ink-950 dark:text-ink-100;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 10% -10%, rgb(170 223 211 / 0.35), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgb(230 213 189 / 0.4), transparent);
+    min-height: 100vh;
+  }
+
+  html.dark body {
+    background-image:
+      radial-gradient(ellipse 70% 45% at 0% 0%, rgb(20 89 79 / 0.45), transparent),
+      radial-gradient(ellipse 50% 35% at 100% 10%, rgb(54 65 79 / 0.5), transparent);
+  }
+
+  ::selection {
+    @apply bg-brand-200 text-ink-900;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/70 dark:bg-ink-900/70 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-soft;
+  }
+
+  .glass-strong {
+    @apply bg-white/85 dark:bg-ink-900/85 backdrop-blur-2xl border border-white/60 dark:border-white/10 shadow-lift;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3 font-semibold text-white
+      shadow-glow transition-all duration-300 hover:bg-brand-500 hover:shadow-lift hover:-translate-y-0.5
+      active:translate-y-0 disabled:opacity-60 disabled:pointer-events-none;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-ink-900 dark:bg-ink-100 px-5 py-3 font-semibold
+      text-white dark:text-ink-900 transition-all duration-300 hover:-translate-y-0.5 hover:opacity-90
+      active:translate-y-0;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-ink-200 dark:border-ink-700
+      bg-white/50 dark:bg-ink-800/50 px-5 py-3 font-semibold text-ink-800 dark:text-ink-100
+      transition-all duration-300 hover:bg-white dark:hover:bg-ink-800 hover:-translate-y-0.5;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-5 py-3 font-semibold text-white
+      transition-all duration-300 hover:bg-accent-soft hover:-translate-y-0.5 shadow-soft;
+  }
+
+  .input-field {
+    @apply w-full rounded-xl border border-ink-200 dark:border-ink-700 bg-white/80 dark:bg-ink-900/80
+      px-4 py-3 text-ink-900 dark:text-ink-50 outline-none transition-all duration-200
+      placeholder:text-ink-400 focus:border-brand-400 focus:ring-4 focus:ring-brand-500/15;
+  }
+
+  .label-field {
+    @apply mb-2 block text-sm font-medium text-ink-600 dark:text-ink-300;
+  }
+
+  .section-title {
+    @apply font-display text-3xl md:text-4xl font-semibold tracking-tight text-ink-900 dark:text-ink-50;
+  }
+
+  .page-shell {
+    @apply min-h-screen;
+  }
+
+  .card-surface {
+    @apply rounded-2xl bg-white dark:bg-ink-900 border border-ink-100 dark:border-ink-800 shadow-soft
+      transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-1.5 hover:shadow-lift hover:border-brand-200 dark:hover:border-brand-700;
+  }
+}
